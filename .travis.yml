@@ -2,8 +2,13 @@ language: c
 compiler:
 - clang
 - gcc
+
 script:
 - echo "script"
+
+before_deploy:
+  - tar -czf release.tgz README.md
+
 deploy:
   provider: releases
   api_key:
