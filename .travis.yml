@@ -11,5 +11,6 @@ deploy:
   api_key:
     secure: ${GITHUB_RELEASE_API_KEY}
   file: release.tgz
+  skip_cleanup: true
   on:
     repo: poparteu/popart-dep
