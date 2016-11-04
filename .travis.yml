@@ -1,9 +1,13 @@
 language: c
 compiler:
- - clang
- - gcc
-
+- clang
+- gcc
 script:
- - echo "script"
-
-
+- echo "script"
+deploy:
+  provider: releases
+  api_key:
+    secure: QSSAX5Etd8EFPn+GCrfdvQsvVEUhm7yZOT2pRzITOBh0WNAF+xx4IrMRTeeg33U9YW6+EiBXgB0/lyG0eqF+GKdqVevt84XZAOpY077n5YZW6jr5ldBKF+aH10NuXIJzuFGd9/x+o1Jhj+TS2lyImRZ+hvmnALJaTyo/PdL3/dwIt8YGvNxvq8qSL+YCsYQ7sasS+RrmquSpSLzAXDj4hZt7nXdLwkKPsuuIg/BQBeSu+QVeVmiQsz2Mh/VweAKvCb36C9Fg4RB0zQvnVz2t4skikB+eHPrAQP1jMqoLrmkhlVwhwt8g07tVEGSoCjLmloQ3tzOksxW1tV21cmKiXY/TGrQn3pNnEX87+5WLoKOBa6zwybTgwd00H5ehbIUQdVzMon2S1lHzhmKsamP4KtIuFsSBHNDr6hDPhgOlMnOEC2nDMhZpWlYegXMJ3EDrSbeIFW0Cq84ffH2RnC2NNdjnZaE7bBp5EFNijhSFMg9oF5BECr/vPJHhxMebpMVdYniTQz1FFZaBBqb1GaMaJYe7QObLqMACeDqBymm4f1dPcdUq6HOy3BGc5KL9RM/YKQBZz+j4duPHtcyzuEfyQxchPv0fgtjzvaHfW6u90WV5xMXWyJbagJjxXIqYmffZFFQobvO6/bvmClNAFttM5jiwIWOjdmlhz2LhppFZkGI=
+  file: release.tgz
+  on:
+    repo: poparteu/popart-dep
