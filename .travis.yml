@@ -1,11 +1,65 @@
-language: c
+#
+# http://travis-ci.org configuration file for openMVG
+#
+
+language: cpp
+
 compiler:
-- clang
-- gcc
+  - gcc
+  #- clang: #Consider clang later, since cereal does not build fine on the clang CI version
+  #  - "3.3"
+
+sudo: false
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - boost-latest
+    packages:
+      #- cmake # Manually install latest version (>=3.0)
+      - libboost1.55-all-dev
+      - lcov
+      - libpng-dev
+      - libjpeg8-dev
+      - libtiff4-dev
+      - libxxf86vm1
+      - libxxf86vm-dev
+      - x11proto-xf86vidmode-dev
+      - libxrandr-dev
+      - g++-4.8
+      - libatlas-base-dev
+      - libsuitesparse-dev
+
+env:
+  global:
+    - NUM_CPU="`grep processor /proc/cpuinfo | wc -l`"; echo $NUM_CPU
+    - BUILD_TYPE="Release"
+    - BUILD_SYSTEM="`uname -s`"
+    - BUILD_PROCESSOR="`uname -p`"
+
+
+before_install:
+ - date -u
+ - uname -a
+ - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
+     lsb_release -a;
+   elif [[ ${TRAVIS_OS_NAME} == "osx" ]]; then
+     sw_vers -productVersion;
+   fi
+
+
+install:
+ - ./ci/install-cmake.sh
+ - ./ci/install-dependencies.sh
+
 script:
 - echo "script"
 before_deploy:
-- tar -czf release.tgz README.md
+- . ./ci/env.sh
+- cd ${TRAVIS_BUILD_DIR}
+- tar -czf release.tgz install
+- ls
 deploy:
   provider: releases
   api_key:
