@@ -12,6 +12,7 @@ export OPENGV_ROOT="${TRAVIS_BUILD_DIR}/opengv-${OPENGV_VERSION}"
 export OPENGV_SOURCE="${OPENGV_ROOT}/source"
 export OPENGV_BUILD="${OPENGV_ROOT}/build"
 
+downloadEigen
 
 echo "Download OpenGV"
 mkdir --parent "$OPENGV_BUILD"
@@ -25,7 +26,7 @@ cmake \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX="$OPENGV_INSTALL" \
   -DINSTALL_OPENGV=ON \
-  -DEIGEN_INCLUDE_DIR="$EIGEN_INSTALL"/include/eigen3 \
+  -DEIGEN_INCLUDE_DIR="${DEPS_INSTALL_DIR}/include/eigen3" \
   "$OPENGV_SOURCE"
 
 make -j 2

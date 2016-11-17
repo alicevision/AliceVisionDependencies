@@ -57,3 +57,24 @@ download_files_from_tar()
 }
 
 export PATH="${CMAKE_INSTALL}/bin:${PATH}"
+
+export EIGEN_VERSION=3.2.8
+
+
+# downloadFromPopart TARGET_FULL_NAME INSTALL_PATH
+downloadFromPopart()
+{
+    download_files_from_tar "https://github.com/poparteu/popart-dependencies/releases/download/$1/$1.tgz" $2
+    return 0
+}
+
+
+# Download the popart official eigen version.
+# It's defined globally because this libraries is used by multiple targets.
+downloadEigen()
+{
+    downloadFromPopart eigen-${EIGEN_VERSION} ${DEPS_INSTALL_DIR}
+    return 0
+}
+
+
