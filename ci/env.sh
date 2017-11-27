@@ -59,6 +59,7 @@ download_files_from_tar()
 export PATH="${CMAKE_INSTALL}/bin:${PATH}"
 
 export EIGEN_VERSION=3.2.8
+export OPENEXR_VERSION=2.2.1
 
 
 # downloadFromAliceVision TARGET_FULL_NAME INSTALL_PATH
@@ -77,4 +78,9 @@ downloadEigen()
     return 0
 }
 
+downloadOpenEXR()
+{
+    downloadFromAliceVision openexr-${OPENEXR_VERSION} ${DEPS_INSTALL_DIR}
+    return 0
+}
 
