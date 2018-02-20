@@ -1,7 +1,7 @@
 #
 # http://travis-ci.org configuration file for AliceVision
 #
-
+if: tag IS present
 language: cpp
 dist: trusty
 sudo: false
@@ -9,7 +9,7 @@ compiler:
   - gcc
   #- clang: #Consider clang later, since cereal does not build fine on the clang CI version
   #  - "3.3"
-  
+
 addons:
   apt:
     sources:
