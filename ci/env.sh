@@ -49,10 +49,8 @@ folder_empty()
 # download_files_from_tar http://path/to/archive.tar.gz /path/to/source
 download_files_from_tar()
 {
-    if folder_empty "$2"; then
-        mkdir --parent "$2"
-        retry wget --no-check-certificate --quiet -O - "$1" | tar --strip-components=1 -xz -C "$2"
-    fi
+	mkdir --parent "$2"
+    retry wget --no-check-certificate --quiet -O - "$1" | tar --strip-components=1 -xz -C "$2"
     return 0
 }
 
@@ -60,7 +58,7 @@ export PATH="${CMAKE_INSTALL}/bin:${PATH}"
 
 export EIGEN_VERSION=3.2.8
 export OPENEXR_VERSION=2.2.1
-
+export BOOST_VERSION=1.61.0
 
 # downloadFromAliceVision TARGET_FULL_NAME INSTALL_PATH
 downloadFromAliceVision()
@@ -84,3 +82,8 @@ downloadOpenEXR()
     return 0
 }
 
+downloadBoost()
+{
+    downloadFromAliceVision boost-${BOOST_VERSION} ${DEPS_INSTALL_DIR}
+    return 0
+}

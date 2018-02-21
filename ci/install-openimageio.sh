@@ -13,6 +13,7 @@ export OIIO_SOURCE="${OIIO_ROOT}/source"
 export OIIO_BUILD="${OIIO_ROOT}/build"
 
 downloadOpenEXR
+downloadBoost
 
 echo "Download OpenImageIO"
 mkdir --parent "${OIIO_BUILD}"
@@ -23,19 +24,17 @@ git clone --depth 1 --branch "${OIIO_VERSION}" https://github.com/OpenImageIO/oi
 echo "Build OpenImageIO"
 cd $OIIO_BUILD
 
-cmake -DCMAKE_BUILD_TYPE=Release \
+cmake -DCMAKE_BUILD_TYPE=Release               \
 	  -DCMAKE_INSTALL_PREFIX="${OIIO_INSTALL}" \
-	  -DOPENEXR_HOME="${DEPS_INSTALL_DIR}" \
-	  -DILMBASE_HOME="${DEPS_INSTALL_DIR}" \
-	  -DUSE_PYTHON=0 \
+	  -DOPENEXR_HOME="${DEPS_INSTALL_DIR}"     \
+	  -DILMBASE_HOME="${DEPS_INSTALL_DIR}"     \
+	  -DBOOST_ROOT="${DEPS_INSTALL_DIR}"       \
+	  -DUSE_PYTHON=0                           \
 	  "${OIIO_SOURCE}"
 
 make -j 2
 
 echo "Install OpenImageIO"
 make install
-
-
-
 
 popd
