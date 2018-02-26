@@ -49,32 +49,41 @@ folder_empty()
 # download_files_from_tar http://path/to/archive.tar.gz /path/to/source
 download_files_from_tar()
 {
-    if folder_empty "$2"; then
-        mkdir --parent "$2"
-        retry wget --no-check-certificate --quiet -O - "$1" | tar --strip-components=1 -xz -C "$2"
-    fi
+	mkdir --parent "$2"
+    retry wget --no-check-certificate --quiet -O - "$1" | tar --strip-components=1 -xz -C "$2"
     return 0
 }
 
 export PATH="${CMAKE_INSTALL}/bin:${PATH}"
 
 export EIGEN_VERSION=3.2.8
+export OPENEXR_VERSION=2.2.1
+export BOOST_VERSION=1.61.0
 
-
-# downloadFromPopart TARGET_FULL_NAME INSTALL_PATH
-downloadFromPopart()
+# downloadFromAliceVision TARGET_FULL_NAME INSTALL_PATH
+downloadFromAliceVision()
 {
-    download_files_from_tar "https://github.com/poparteu/popart-dependencies/releases/download/$1/$1.tgz" $2
+    download_files_from_tar "https://github.com/alicevision/AliceVisionDependencies/releases/download/$1/$1.tgz" $2
     return 0
 }
 
 
-# Download the popart official eigen version.
-# It's defined globally because this libraries is used by multiple targets.
+# Download the AliceVision eigen version.
+# It is defined globally because this libraries is used by multiple targets.
 downloadEigen()
 {
-    downloadFromPopart eigen-${EIGEN_VERSION} ${DEPS_INSTALL_DIR}
+    downloadFromAliceVision eigen-${EIGEN_VERSION} ${DEPS_INSTALL_DIR}
     return 0
 }
 
+downloadOpenEXR()
+{
+    downloadFromAliceVision openexr-${OPENEXR_VERSION} ${DEPS_INSTALL_DIR}
+    return 0
+}
 
+downloadBoost()
+{
+    downloadFromAliceVision boost-${BOOST_VERSION} ${DEPS_INSTALL_DIR}
+    return 0
+}
