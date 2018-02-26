@@ -56,7 +56,7 @@ download_files_from_tar()
 
 export PATH="${CMAKE_INSTALL}/bin:${PATH}"
 
-export EIGEN_VERSION=3.2.8
+export EIGEN_VERSION=3.3.4
 export OPENEXR_VERSION=2.2.1
 export BOOST_VERSION=1.61.0
 
