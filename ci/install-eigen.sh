@@ -14,11 +14,18 @@ export EIGEN_BUILD="${EIGEN_ROOT}/build"
 
 echo "Download Eigen"
 mkdir --parent "$EIGEN_ROOT"
+cd "${EIGEN_ROOT}"
+
 hg clone -r "${EIGEN_VERSION}" https://bitbucket.org/eigen/eigen/ "$EIGEN_ROOT"
-mkdir --parent "${EIGEN_BUILD}"
+
+# Fix "CMake Error: CMAKE_Fortran_COMPILER not set, after EnableLanguage"
+wget https://bitbucket.org/eigen/eigen/commits/dbab66d00651bf050d1426334a39b627abe7216e/raw
+patch cmake/FindBLAS.cmake < raw
 
 echo "Build Eigen"
+mkdir --parent "${EIGEN_BUILD}"
 cd "${EIGEN_BUILD}"
+
 cmake -DCMAKE_INSTALL_PREFIX="${EIGEN_INSTALL}" "${EIGEN_ROOT}"
 
 make -j 2
