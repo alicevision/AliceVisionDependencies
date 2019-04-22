@@ -18,10 +18,6 @@ cd "${EIGEN_ROOT}"
 
 hg clone -r "${EIGEN_VERSION}" https://bitbucket.org/eigen/eigen/ "$EIGEN_ROOT"
 
-# Fix "CMake Error: CMAKE_Fortran_COMPILER not set, after EnableLanguage"
-wget https://bitbucket.org/eigen/eigen/commits/dbab66d00651bf050d1426334a39b627abe7216e/raw
-patch cmake/FindBLAS.cmake < raw
-
 echo "Build Eigen"
 mkdir --parent "${EIGEN_BUILD}"
 cd "${EIGEN_BUILD}"
