@@ -16,7 +16,7 @@ echo "Download Eigen"
 mkdir --parent "$EIGEN_ROOT"
 cd "${EIGEN_ROOT}"
 
-hg clone -r "${EIGEN_VERSION}" https://bitbucket.org/eigen/eigen/ "$EIGEN_ROOT"
+git clone --depth 1 --branch "${EIGEN_VERSION}" https://github.com/eigenteam/eigen-git-mirror.git "$EIGEN_ROOT"
 
 echo "Build Eigen"
 mkdir --parent "${EIGEN_BUILD}"
