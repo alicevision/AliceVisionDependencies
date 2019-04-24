@@ -57,7 +57,7 @@ download_files_from_tar()
 export PATH="${CMAKE_INSTALL}/bin:${PATH}"
 
 export EIGEN_VERSION=3.3.7
-export OPENEXR_VERSION=2.2.1
+export OPENEXR_VERSION=2.3.0
 export BOOST_VERSION=1.66.0
 
 # downloadFromAliceVision TARGET_FULL_NAME INSTALL_PATH
