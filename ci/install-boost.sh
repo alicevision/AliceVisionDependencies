@@ -20,7 +20,7 @@ download_files_from_tar "https://sourceforge.net/projects/boost/files/boost/${BO
 
 echo "Build Boost."
 cd "$BOOST_SOURCE"
-./bootstrap.sh --with-libraries=atomic,container,date_time,exception,filesystem,graph,log,math,program_options,regex,serialization,system,test,thread --prefix="$BOOST_INSTALL"
+./bootstrap.sh --with-libraries=atomic,container,date_time,exception,filesystem,graph,log,math,program_options,regex,serialization,stacktrace,system,test,thread --prefix="$BOOST_INSTALL"
 ./b2 link=shared install
 
 popd
