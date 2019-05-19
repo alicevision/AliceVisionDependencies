@@ -19,7 +19,7 @@ echo "Download OpenImageIO"
 mkdir --parent "${OIIO_BUILD}"
 mkdir --parent "${OIIO_INSTALL}"
 
-git clone --depth 1 --branch "${OIIO_VERSION}" https://github.com/OpenImageIO/oiio.git "${OIIO_SOURCE}"
+git clone --depth 1 --branch "Release-${OIIO_VERSION}" https://github.com/OpenImageIO/oiio.git "${OIIO_SOURCE}"
 
 echo "Build OpenImageIO"
 cd $OIIO_BUILD

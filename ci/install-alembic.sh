@@ -18,11 +18,7 @@ echo "Download Alembic"
 mkdir --parent "${ALEMBIC_BUILD}"
 mkdir --parent "${ALEMBIC_INSTALL}"
 
-git clone --depth 1 https://github.com/alembic/alembic.git "${ALEMBIC_SOURCE}"
-
-echo "Getting version tag"
-cd ${ALEMBIC_SOURCE}
-git checkout tags/${ALEMBIC_VERSION} -b v${ALEMBIC_VERSION}
+git clone --depth 1 --branch "${ALEMBIC_VERSION}" https://github.com/alembic/alembic.git "${ALEMBIC_SOURCE}"
 
 echo "Build Alembic"
 cd $ALEMBIC_BUILD
